@@ -1,0 +1,113 @@
+const int types_count = 5;
+int type::standard() asm "0 PUSHINT";
+int type::silver() asm "1 PUSHINT";
+int type::gold() asm "2 PUSHINT";
+int type::platinum() asm "3 PUSHINT";
+int type::black() asm "4 PUSHINT";
+
+
+(int, int, int) get_type_from_value (int msg_value) {
+    if ((msg_value % 1000000000) == 0) {
+        msg_value = msg_value / 1000000000;
+    } else {
+        throw(200);
+    }
+
+    if ((msg_value % 2999) == 0) {
+        return (2999, type::black(), msg_value / 2999);
+    }
+
+    if ((msg_value % 999) == 0) {
+        return (999, type::platinum(), msg_value / 999);
+    }
+
+    if ((msg_value % 249) == 0) {
+        return (249, type::gold(), msg_value / 249);
+    }
+
+    if ((msg_value % 49) == 0) {
+        return (49, type::silver(), msg_value / 49);
+    }
+
+    if ((msg_value % 20) == 0) {
+        return (20, type::standard(), msg_value / 20);
+    }
+
+    throw(200);
+    return (0, -1, -1);
+}
+
+(int, int, int, int) unpack_sales_info (slice sales_info, int nft_type) {
+    int start_index = 0;
+
+    sales_info~skip_bits(nft_type * 16);
+    int hard_limit = sales_info~load_uint(16);
+
+    repeat ((types_count - 1) - nft_type) {
+        start_index += sales_info~load_uint(16);
+    }
+    
+    sales_info~skip_bits(nft_type * 16);
+    int soft_limit = sales_info~load_uint(16);
+
+    sales_info~skip_bits((types_count - 1) * 16);
+    int sales_count = sales_info~load_uint(16);
+
+    return (start_index, hard_limit, soft_limit, sales_count);
+}
+
+cell pack_and_update_sales_count (slice old_sales_info, int nft_type, int sales_count) {
+    slice hard_and_soft_limits = old_sales_info~load_bits(types_count * 16 * 2);
+    slice sales_count_part_1 = old_sales_info~load_bits(nft_type * 16);
+    old_sales_info~skip_bits(16);
+    slice sales_count_part_2 = old_sales_info~load_bits((types_count - nft_type - 1) * 16);
+
+    return begin_cell()
+        .store_slice(hard_and_soft_limits)
+        .store_slice(sales_count_part_1)
+        .store_uint(sales_count, 16)
+        .store_slice(sales_count_part_2)
+        .end_cell();
+}
+
+cell pack_and_update_soft_limits (slice old_sales_info, slice new_soft_limits) {
+    int frame_size = types_count * 16;
+
+    slice hard_limits = old_sales_info~load_bits(frame_size);
+    old_sales_info~skip_bits(frame_size);
+    slice sales_count = old_sales_info~load_bits(frame_size);
+
+    throw_unless(406, new_soft_limits.slice_bits() == frame_size);
+    return begin_cell()
+        .store_slice(hard_limits)
+        .store_slice(new_soft_limits)
+        .store_slice(sales_count)
+        .end_cell();
+}
+
+int 4_bit_to_hex (int bits) inline {
+    if (bits < 10) {
+        return 48 + bits;
+    } else {
+        return 65 - 10 + bits;
+    }
+}
+
+builder store_int_as_hex_string (builder b, int x, int hex_len) {
+    int i = 0;
+    repeat (hex_len) {
+        b~store_uint(4_bit_to_hex((x >> ((hex_len - i - 1) * 4)) & 15), 8);
+        i += 1;
+    }
+
+    return b;
+}
+
+cell generate_content_from_index (int index) {
+    builder content = begin_cell();
+
+    content = content.store_int_as_hex_string(index, 4);
+    content = content.store_slice(".json");
+
+    return content.end_cell();
+}
