@@ -1,5 +1,5 @@
 "Asm.fif" include
-// automatically generated from `../stdlib.fc` `params.fc` `op-codes.fc` `nft-item-editable-DRAFT.fc` 
+// automatically generated from `stdlib.fc` `params.fc` `op-codes.fc` `nft-item-editable-DRAFT.fc` 
 PROGRAM{
   DECLPROC force_chain
   DECLPROC load_data
@@ -59,7 +59,7 @@ PROGRAM{
     ENDC	//  _12
     c4 POP
   }>
-  send_msg PROC:<{
+  send_msg PROCINLINE:<{
     //  to_address amount op query_id payload send_mode
     0 PUSHINT	//  to_address amount op query_id payload send_mode _7=0
     16 PUSHINT	//  to_address amount op query_id payload send_mode _7=0 _8=16
@@ -89,7 +89,7 @@ PROGRAM{
     SWAP	//  _35 send_mode
     SENDRAWMSG
   }>
-  transfer_ownership PROC:<{
+  transfer_ownership PROCINLINE:<{
     //  my_balance index collection_address owner_address content editor_address sender_address query_id in_msg_body fwd_fees
     s3 s6 XCPU	//  my_balance index collection_address owner_address content editor_address fwd_fees query_id in_msg_body sender_address owner_address
     SDEQ	//  my_balance index collection_address owner_address content editor_address fwd_fees query_id in_msg_body _11
@@ -160,7 +160,7 @@ PROGRAM{
     4 ROLL	//  index collection_address new_owner_address content editor_address
     store_data CALLDICT
   }>
-  transfer_editorship PROC:<{
+  transfer_editorship PROCINLINE:<{
     //  my_balance index collection_address owner_address content editor_address sender_address query_id in_msg_body fwd_fees
     s3 s4 XCPU	//  my_balance index collection_address owner_address content editor_address fwd_fees query_id in_msg_body sender_address editor_address
     SDEQ	//  my_balance index collection_address owner_address content editor_address fwd_fees query_id in_msg_body _11

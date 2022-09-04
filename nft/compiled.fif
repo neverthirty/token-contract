@@ -1,5 +1,4 @@
-"Asm.fif" include
-// automatically generated from `stdlib.fc` `params.fc` `op-codes.fc` `nft-collection-utils.fc` `nft-collection-editable.fc` 
+// automatically generated from `./nft/stdlib.fc` `./nft/params.fc` `./nft/op-codes.fc` `./nft/nft-collection-utils.fc` `./nft/nft-collection-editable.fc` 
 PROGRAM{
   DECLPROC force_chain
   DECLPROC get_type_from_value
