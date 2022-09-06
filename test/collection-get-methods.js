@@ -47,7 +47,7 @@ funcer({'logVmOps': false, 'logFiftCode': false}, {
             "output": [
                 ["cell", [
                     'uint8', 1,
-                    "string", "https://ton.org/meta-test-0000.json"
+                    "string", "https://ton.org/meta/0000.json"
                 ]]
             ]
         },
@@ -60,7 +60,7 @@ funcer({'logVmOps': false, 'logFiftCode': false}, {
             "output": [
                 ["cell", [
                     'uint8', 1,
-                    "string", "https://ton.org/meta--00FE.json"
+                    "string", "https://ton.org/meta/00FE.json"
                 ]]
             ]
         },

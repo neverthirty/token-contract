@@ -90,7 +90,8 @@ slice calculate_nft_item_address(int wc, cell state_init) {
     return (0, 0, sales_info);
   }
 
-  int available_for_sale = min(hard_limit, soft_limit) - sales_count;
+  int is_owner_request = equal_slices(sender_address, owner_address);
+  int available_for_sale = (is_owner_request ? hard_limit : min(hard_limit, soft_limit)) - sales_count;
   int count_for_sale = min(min(available_for_sale, nft_count), 250);
   if (count_for_sale <= 0) {
     send_with_comment(sender_address, 0, "Minting is on pause", 64);
