@@ -212,9 +212,6 @@ cell get_nft_content(int index, cell individual_nft_content) method_id {
   return (begin_cell()
                       .store_uint(1, 8) ;; offchain tag
                       .store_slice(common_content)
-                      .store_slice("-")
-                      .store_slice(individual_nft_content.begin_parse())
-                      .store_slice("-")
                       .store_int_as_hex_string(index, 4)
                       .store_slice(".json")
           .end_cell());
