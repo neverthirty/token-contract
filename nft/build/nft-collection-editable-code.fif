@@ -400,18 +400,18 @@ PROGRAM{
     ADD	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index
     s4 PUSH	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index count_for_sale
     REPEAT:<{	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index
-      100000000 PUSHINT	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=100000000
-      NEWC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=100000000 _43
-      ENDC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=100000000 _44
-      NEWC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=100000000 _44 _45
-      s10 PUSH	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=100000000 _44 _45 sender_address
-      STSLICER	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=100000000 _44 _46
-      STREF	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=100000000 _47
-      s8 PUSH	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=100000000 _47 owner_address
-      STSLICER	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=100000000 _48
-      ENDC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=100000000 nft_content
+      80000000 PUSHINT	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000
+      NEWC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _43
+      ENDC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _44
+      NEWC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _44 _45
+      s10 PUSH	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _44 _45 sender_address
+      STSLICER	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _44 _46
+      STREF	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _47
+      s8 PUSH	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _47 owner_address
+      STSLICER	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _48
+      ENDC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 nft_content
       s2 PUSH
-      s8 s2 s(-1) PUXC2	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index next_index nft_item_code deploy_msg_value=100000000 nft_content
+      s8 s2 s(-1) PUXC2	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index next_index nft_item_code deploy_msg_value=80000000 nft_content
       deploy_nft_item CALLDICT
       INC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index
     }>

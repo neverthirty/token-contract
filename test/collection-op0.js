@@ -25,7 +25,7 @@ funcer({'logVmOps': false, 'logFiftCode': false}, {
             "out_msgs": [
                 {
                     "type": "Internal",
-                    "amount": 0.1 * TON,
+                    "amount": 0.08 * TON,
                     "sendMode": 1,
                     "body": [
                         "Address", '0:' + USER_ADDRESS,
@@ -35,7 +35,7 @@ funcer({'logVmOps': false, 'logFiftCode': false}, {
                 },
                 {
                     "type": "Internal",
-                    "amount": 0.1 * TON,
+                    "amount": 0.08 * TON,
                     "sendMode": 1,
                     "body": [
                         "Address", '0:' + USER_ADDRESS,

@@ -41,7 +41,7 @@ const tonwebProvider = Utils.getProvider();
             console.log("Add transfer. Type:", typeId, "Count:", deployCount);
             transfers.push({
                 destination: new Address(nftCollectionContractAddress),
-                amount: new Coins((0.11 * deployCount)),
+                amount: new Coins((0.15 * deployCount)),
                 body: BOC.from(await (await nftCollectionContract.createAdminDeployRequestBody(typeId, deployCount)).toBoc())[0],
                 mode: 1,
             });

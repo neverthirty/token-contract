@@ -1,3 +1,4 @@
 .idea
 deploy/node_modules/
 deploy/dist/
+deploy/mnemonic.txt

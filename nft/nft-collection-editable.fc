@@ -100,7 +100,7 @@ slice calculate_nft_item_address(int wc, cell state_init) {
 
   int next_index = start_index + sales_count;
   repeat (count_for_sale) {
-    int deploy_msg_value = 100000000;
+    int deploy_msg_value = 80000000;
     cell nft_content = begin_cell()
       .store_slice(sender_address)
       ;; .store_ref(generate_content_from_index(next_index))
