@@ -105,7 +105,7 @@ slice calculate_nft_item_address(int wc, cell state_init) {
       .store_slice(sender_address)
       ;; .store_ref(generate_content_from_index(next_index))
       .store_ref(begin_cell().end_cell())
-      .store_slice(owner_address)
+      ;; .store_slice(owner_address)
       .end_cell();
 
     deploy_nft_item(next_index, nft_item_code, deploy_msg_value, nft_content);

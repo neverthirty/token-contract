@@ -51,7 +51,6 @@ funcer({'logVmOps': false, 'logFiftCode': false}, {
                     "sendMode": 1,
                     "body": [
                         "Address", '0:' + OWNER_ADDRESS,
-                        "Address", '0:' + OWNER_ADDRESS,
                         "cell", [],
                     ],
                 }
@@ -70,7 +69,6 @@ funcer({'logVmOps': false, 'logFiftCode': false}, {
                     "sendMode": 1,
                     "body": [
                         "Address", '0:' + OWNER_ADDRESS,
-                        "Address", '0:' + OWNER_ADDRESS,
                         "cell", [],
                     ],
                 }, {
@@ -78,7 +76,6 @@ funcer({'logVmOps': false, 'logFiftCode': false}, {
                     "amount": 0.08 * TON,
                     "sendMode": 1,
                     "body": [
-                        "Address", '0:' + OWNER_ADDRESS,
                         "Address", '0:' + OWNER_ADDRESS,
                         "cell", [],
                     ],
@@ -111,7 +108,6 @@ funcer({'logVmOps': false, 'logFiftCode': false}, {
                     "sendMode": 1,
                     "body": [
                         "Address", '0:' + OWNER_ADDRESS,
-                        "Address", '0:' + OWNER_ADDRESS,
                         "cell", [],
                     ],
                 },
@@ -120,7 +116,6 @@ funcer({'logVmOps': false, 'logFiftCode': false}, {
                     "amount": 0.08 * TON,
                     "sendMode": 1,
                     "body": [
-                        "Address", '0:' + OWNER_ADDRESS,
                         "Address", '0:' + OWNER_ADDRESS,
                         "cell", [],
                     ],

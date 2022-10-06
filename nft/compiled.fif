@@ -366,26 +366,24 @@ PROGRAM{
       0 PUSHINT	//  sales_info _18=0
       s0 s1 PUXC	//  _18=0 _19=0 sales_info
     }>	//  sender_address owner_address nft_item_code sales_info nft_type nft_count sales_info_slice start_index hard_limit soft_limit sales_count
-    s10 s9 PUSH2	//  sender_address owner_address nft_item_code sales_info nft_type nft_count sales_info_slice start_index hard_limit soft_limit sales_count sender_address owner_address
-    SDEQ	//  sender_address owner_address nft_item_code sales_info nft_type nft_count sales_info_slice start_index hard_limit soft_limit sales_count is_owner_request
-    IF:<{	//  sender_address owner_address nft_item_code sales_info nft_type nft_count sales_info_slice start_index hard_limit soft_limit sales_count
-      NIP	//  sender_address owner_address nft_item_code sales_info nft_type nft_count sales_info_slice start_index _23 sales_count
-    }>ELSE<{	//  sender_address owner_address nft_item_code sales_info nft_type nft_count sales_info_slice start_index hard_limit soft_limit sales_count
-      -ROT	//  sender_address owner_address nft_item_code sales_info nft_type nft_count sales_info_slice start_index sales_count hard_limit soft_limit
-      MIN	//  sender_address owner_address nft_item_code sales_info nft_type nft_count sales_info_slice start_index sales_count _23
-      SWAP	//  sender_address owner_address nft_item_code sales_info nft_type nft_count sales_info_slice start_index _23 sales_count
+    s10 s9 PUXC	//  sender_address sales_count nft_item_code sales_info nft_type nft_count sales_info_slice start_index hard_limit soft_limit sender_address owner_address
+    SDEQ	//  sender_address sales_count nft_item_code sales_info nft_type nft_count sales_info_slice start_index hard_limit soft_limit is_owner_request
+    IF:<{	//  sender_address sales_count nft_item_code sales_info nft_type nft_count sales_info_slice start_index hard_limit soft_limit
+      DROP	//  sender_address sales_count nft_item_code sales_info nft_type nft_count sales_info_slice start_index _23
+    }>ELSE<{	//  sender_address sales_count nft_item_code sales_info nft_type nft_count sales_info_slice start_index hard_limit soft_limit
+      MIN	//  sender_address sales_count nft_item_code sales_info nft_type nft_count sales_info_slice start_index _23
     }>
-    TUCK	//  sender_address owner_address nft_item_code sales_info nft_type nft_count sales_info_slice start_index sales_count _23 sales_count
-    SUB	//  sender_address owner_address nft_item_code sales_info nft_type nft_count sales_info_slice start_index sales_count available_for_sale
-    s0 s4 XCHG2	//  sender_address owner_address nft_item_code sales_info nft_type sales_count sales_info_slice start_index available_for_sale nft_count
-    MIN	//  sender_address owner_address nft_item_code sales_info nft_type sales_count sales_info_slice start_index _27
-    250 PUSHINT	//  sender_address owner_address nft_item_code sales_info nft_type sales_count sales_info_slice start_index _27 _28=250
-    MIN	//  sender_address owner_address nft_item_code sales_info nft_type sales_count sales_info_slice start_index count_for_sale
-    DUP	//  sender_address owner_address nft_item_code sales_info nft_type sales_count sales_info_slice start_index count_for_sale count_for_sale
-    1 LESSINT	//  sender_address owner_address nft_item_code sales_info nft_type sales_count sales_info_slice start_index count_for_sale _31
-    IFJMP:<{	//  sender_address owner_address nft_item_code sales_info nft_type sales_count sales_info_slice start_index count_for_sale
-      s5 s7 XCHG
-      7 BLKDROP	//  sender_address sales_info
+    s7 PUSH	//  sender_address sales_count nft_item_code sales_info nft_type nft_count sales_info_slice start_index _23 sales_count
+    SUB	//  sender_address sales_count nft_item_code sales_info nft_type nft_count sales_info_slice start_index available_for_sale
+    s0 s3 XCHG2	//  sender_address sales_count nft_item_code sales_info nft_type start_index sales_info_slice available_for_sale nft_count
+    MIN	//  sender_address sales_count nft_item_code sales_info nft_type start_index sales_info_slice _27
+    250 PUSHINT	//  sender_address sales_count nft_item_code sales_info nft_type start_index sales_info_slice _27 _28=250
+    MIN	//  sender_address sales_count nft_item_code sales_info nft_type start_index sales_info_slice count_for_sale
+    DUP	//  sender_address sales_count nft_item_code sales_info nft_type start_index sales_info_slice count_for_sale count_for_sale
+    1 LESSINT	//  sender_address sales_count nft_item_code sales_info nft_type start_index sales_info_slice count_for_sale _31
+    IFJMP:<{	//  sender_address sales_count nft_item_code sales_info nft_type start_index sales_info_slice count_for_sale
+      s4 s6 XCHG
+      6 BLKDROP	//  sender_address sales_info
       SWAP
       0 PUSHINT
       x{4d696e74696e67206973206f6e207061757365} PUSHSLICE
@@ -393,34 +391,32 @@ PROGRAM{
       send_with_comment CALLDICT
       0 PUSHINT	//  sales_info _36=0
       s0 s1 PUXC	//  _36=0 _37=0 sales_info
-    }>	//  sender_address owner_address nft_item_code sales_info nft_type sales_count sales_info_slice start_index count_for_sale
-    s5 POP	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice start_index
-    s2 PUSH	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice start_index sales_count
-    ADD	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index
-    s4 PUSH	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index count_for_sale
-    REPEAT:<{	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index
-      80000000 PUSHINT	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000
-      NEWC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _43
-      ENDC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _44
-      NEWC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _44 _45
-      s10 PUSH	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _44 _45 sender_address
-      STSLICER	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _44 _46
-      STREF	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _47
-      s8 PUSH	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _47 owner_address
-      STSLICER	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 _48
-      ENDC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index deploy_msg_value=80000000 nft_content
+    }>	//  sender_address sales_count nft_item_code sales_info nft_type start_index sales_info_slice count_for_sale
+    s4 POP	//  sender_address sales_count nft_item_code count_for_sale nft_type start_index sales_info_slice
+    s1 s5 XCPU	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice start_index sales_count
+    ADD	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice next_index
+    s3 PUSH	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice next_index count_for_sale
+    REPEAT:<{	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice next_index
+      80000000 PUSHINT	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice next_index deploy_msg_value=80000000
+      NEWC	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice next_index deploy_msg_value=80000000 _43
+      ENDC	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice next_index deploy_msg_value=80000000 _44
+      NEWC	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice next_index deploy_msg_value=80000000 _44 _45
+      s9 PUSH	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice next_index deploy_msg_value=80000000 _44 _45 sender_address
+      STSLICER	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice next_index deploy_msg_value=80000000 _44 _46
+      STREF	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice next_index deploy_msg_value=80000000 _47
+      ENDC	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice next_index deploy_msg_value=80000000 nft_content
       s2 PUSH
-      s8 s2 s(-1) PUXC2	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index next_index nft_item_code deploy_msg_value=80000000 nft_content
+      s7 s2 s(-1) PUXC2	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice next_index next_index nft_item_code deploy_msg_value=80000000 nft_content
       deploy_nft_item CALLDICT
-      INC	//  sender_address owner_address nft_item_code count_for_sale nft_type sales_count sales_info_slice next_index
+      INC	//  sender_address sales_count nft_item_code count_for_sale nft_type sales_info_slice next_index
     }>
-    s5 POP
-    s5 POP
-    s5 POP	//  sales_count sales_info_slice next_index count_for_sale nft_type
-    s4 s1 XCPU	//  nft_type sales_info_slice next_index count_for_sale sales_count count_for_sale
-    ADD	//  nft_type sales_info_slice next_index count_for_sale _54
-    4 1 REVERSE	//  count_for_sale next_index sales_info_slice nft_type _54
-    pack_and_update_sales_count CALLDICT	//  count_for_sale next_index new_sales_info
+    s4 POP
+    s5 POP	//  sales_info_slice sales_count next_index count_for_sale nft_type
+    s3 s1 XCPU	//  sales_info_slice nft_type next_index count_for_sale sales_count count_for_sale
+    ADD	//  sales_info_slice nft_type next_index count_for_sale _53
+    s4 s3 s0 XCHG3	//  next_index count_for_sale sales_info_slice nft_type _53
+    pack_and_update_sales_count CALLDICT	//  next_index count_for_sale new_sales_info
+    s1 s2 XCHG	//  count_for_sale next_index new_sales_info
   }>
   recv_internal PROC:<{
     //  msg_value in_msg_full in_msg_body

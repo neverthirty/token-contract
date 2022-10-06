@@ -9,5 +9,5 @@
 
 ."nft:" cr
 
-"nft-item-editable-code.fif" include
+"nft-item-code.fif" include
 2 boc+>B dup Bx. cr cr

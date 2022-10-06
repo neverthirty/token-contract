@@ -29,7 +29,6 @@ funcer({'logVmOps': false, 'logFiftCode': false}, {
                     "sendMode": 1,
                     "body": [
                         "Address", '0:' + USER_ADDRESS,
-                        "Address", '0:' + OWNER_ADDRESS,
                         "cell", [],
                     ],
                 }, {
