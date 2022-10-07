@@ -43,11 +43,11 @@ class NftCollection extends TonWeb["Contract"] {
     public createAdminUpdateSoftLimitsBody(limits: number[]): any {
         const softLimitsCell = new Builder();
 
-        softLimitsCell.storeUint(0, 16);
-        softLimitsCell.storeUint(0, 16);
-        softLimitsCell.storeUint(0, 16);
-        softLimitsCell.storeUint(0, 16);
-        softLimitsCell.storeUint(0, 16);
+        softLimitsCell.storeUint(limits[0], 16);
+        softLimitsCell.storeUint(limits[1], 16);
+        softLimitsCell.storeUint(limits[2], 16);
+        softLimitsCell.storeUint(limits[3], 16);
+        softLimitsCell.storeUint(limits[4], 16);
 
         const b = new Builder();
         b.storeUint(5, 32);
