@@ -40,6 +40,23 @@ class NftCollection extends TonWeb["Contract"] {
         return TonWebCell.fromBoc(b.endCell().toBoc().toString("hex"))[0];
     }
 
+    public createAdminUpdateSoftLimitsBody(limits: number[]): any {
+        const softLimitsCell = new Builder();
+
+        softLimitsCell.storeUint(0, 16);
+        softLimitsCell.storeUint(0, 16);
+        softLimitsCell.storeUint(0, 16);
+        softLimitsCell.storeUint(0, 16);
+        softLimitsCell.storeUint(0, 16);
+
+        const b = new Builder();
+        b.storeUint(5, 32);
+        b.storeUint(0, 64);
+        b.storeRef(softLimitsCell.endCell());
+
+        return TonWebCell.fromBoc(b.endCell().toBoc().toString("hex"))[0];
+    }
+
     private createSalesInfoCell(): Cell {
         const salesInfoCell = new Builder();
 

@@ -9,6 +9,7 @@
     "deploy_wallet": "tsc && node dist/scripts/deploy-highload-wallet.js",
     "deploy_nft_collection": "tsc && node dist/scripts/deploy-nft-collection.js",
     "deploy_nft_items": "tsc && node dist/scripts/deploy-nft-items.js",
+    "update_soft_limits": "tsc && node dist/scripts/update-soft-limits.js",
     "withdraw": "tsc && node dist/scripts/withdraw-from-collection.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
