@@ -53,8 +53,8 @@ function getProvider() {
     */ 
 }
 
-const collectionContentUri = 'http://localhost:63342/nft-cards/my_collection_2.json';
-const nftItemContentBaseUri = 'http://localhost:63342/nft-cards/meta/';
+const collectionContentUri = 'https://api.tonnames.org/nft/cards-collection.json';
+const nftItemContentBaseUri = 'https://api.tonnames.org/nft/cards-item-';
 
 const Utils = {
     getKeyPair,
